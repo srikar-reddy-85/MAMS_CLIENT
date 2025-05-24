@@ -17,6 +17,10 @@ export const loginUser = async (credentials) => {
     const response = await axios.post(`${API_URL}/authenticate`, credentials);
     // Save token to localStorage
     localStorage.setItem("token", response.data.token);
+    // console.log(response.data);
+    // console.log(response.data.role);
+    localStorage.setItem("role", response.data.role);
+    console.log(localStorage.getItem("role"));
     return response.data;
 };
 

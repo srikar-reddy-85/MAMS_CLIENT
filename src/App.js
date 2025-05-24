@@ -55,7 +55,85 @@
 
 // export default App;
 
+//==================================stable=================================================
+
 // src/App.js
+// import React from "react";
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Routes,
+//   Navigate,
+// } from "react-router-dom";
+
+// import Dashboard from "./pages/Dashboard";
+// import PurchasesPage from "./pages/PurchasesPage";
+// import TransfersPage from "./pages/TransfersPage";
+// import AssignmentsPage from "./pages/AssignmentsPage";
+// import LoginPage from "./pages/LoginPage";
+// import ProtectedRoute from "./components/ProtectedRoute";
+// import { AuthProvider } from "./context/AuthContext"; // ✅ ADD THIS
+// import Navbar from "./components/Navbar";
+// import Footer from "./components/Footer";
+
+// function App() {
+//   return (
+//     <AuthProvider> {/* ✅ Wrap entire app */}
+//       <Router>
+//         <Routes>
+
+//           <Route path="/" element={<Navigate to="/dashboard" />} />
+//           <Route
+//             path="/dashboard"
+//             element={
+//               <ProtectedRoute>
+//                 <Navbar />
+//                 <Dashboard />
+//                 <Footer />
+//               </ProtectedRoute>
+//             }
+//           />
+//           <Route
+//             path="/purchases"
+//             element={
+//               <ProtectedRoute>
+//                 <Navbar />
+//                 <PurchasesPage />
+//                 <Footer />
+//               </ProtectedRoute>
+//             }
+//           />
+//           <Route
+//             path="/transfers"
+//             element={
+//               <ProtectedRoute>
+//                 <Navbar />
+//                 <TransfersPage />
+//                 <Footer />
+//               </ProtectedRoute>
+//             }
+//           />
+//           <Route
+//             path="/assignments"
+//             element={
+//               <ProtectedRoute>
+//                 <Navbar />
+//                 <AssignmentsPage />
+//                 <Footer />
+//               </ProtectedRoute>
+//             }
+//           />
+//           <Route path="/login" element={<LoginPage />} />
+//         </Routes>
+//       </Router>
+//     </AuthProvider>
+//   );
+// }
+
+// export default App;
+
+// ===============================================================================
+
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -68,13 +146,17 @@ import Dashboard from "./pages/Dashboard";
 import PurchasesPage from "./pages/PurchasesPage";
 import TransfersPage from "./pages/TransfersPage";
 import AssignmentsPage from "./pages/AssignmentsPage";
+import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { AuthProvider } from "./context/AuthContext"; // ✅ ADD THIS
+import AdminRoute from "./components/AdminRoute";
+import { AuthProvider } from "./context/AuthContext";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <AuthProvider> {/* ✅ Wrap entire app */}
+    <AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" />} />
@@ -82,7 +164,9 @@ function App() {
             path="/dashboard"
             element={
               <ProtectedRoute>
+                <Navbar />
                 <Dashboard />
+                <Footer />
               </ProtectedRoute>
             }
           />
@@ -90,7 +174,9 @@ function App() {
             path="/purchases"
             element={
               <ProtectedRoute>
+                <Navbar />
                 <PurchasesPage />
+                <Footer />
               </ProtectedRoute>
             }
           />
@@ -98,7 +184,9 @@ function App() {
             path="/transfers"
             element={
               <ProtectedRoute>
+                <Navbar />
                 <TransfersPage />
+                <Footer />
               </ProtectedRoute>
             }
           />
@@ -106,8 +194,21 @@ function App() {
             path="/assignments"
             element={
               <ProtectedRoute>
+                <Navbar />
                 <AssignmentsPage />
+                <Footer />
               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <AdminRoute>
+                <Navbar />
+                <RegisterPage />
+                <Footer />
+              </AdminRoute>
+
             }
           />
           <Route path="/login" element={<LoginPage />} />
@@ -118,4 +219,6 @@ function App() {
 }
 
 export default App;
+
+
 

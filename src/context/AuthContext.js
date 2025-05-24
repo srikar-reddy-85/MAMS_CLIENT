@@ -8,7 +8,9 @@ export const AuthProvider = ({ children }) => {
         const token = localStorage.getItem("token");
         if (!token) return null;
         const decoded = decodeToken(token);
-        return { token, role: decoded.role };
+        const role = localStorage.getItem("role")
+        // console.log(role);
+        return { token, role: role };
     });
 
     const login = (token) => {
